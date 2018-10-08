@@ -7,13 +7,13 @@ package library.newBook;
 
 public class Book {
 
-	public Book(String string, String string2, String string3, int i, int j) {
+	public Book(String string, String string2, String string3, double d, int j) {
 		// TODO 自動產生的建構子 Stub
 	}
 
-	public Book() {
-		// TODO 自動產生的建構子 Stub
-	}
+//	public Book() {
+//		// TODO 自動產生的建構子 Stub
+//	}
 
 	public Object numberB;
 	public Object chineseB;

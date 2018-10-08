@@ -6,8 +6,7 @@ import java.util.function.Consumer; //消費者
 
 /**
  * @since 2018/09/28
- * @author GG 優先印出圖書資訊
- * a.編號 b.中文書名 c.英文書名(可選) d.ISBN e.價格 f.借／還記錄 g.借出與否
+ * @author GG 優先印出圖書資訊 a.編號 b.中文書名 c.英文書名(可選) d.ISBN e.價格 f.借／還記錄 g.借出與否
  */
 
 public class SystemLibrary {
@@ -28,29 +27,38 @@ public class SystemLibrary {
 			if (print.equals("1")) {
 				System.out.print("請輸入查詢資訊:　a.編號 b.中文書名 c.英文書名 d.ISBN");
 				input = new Scanner(System.in);
-				String searchINFO = input.nextLine();
+				String 	searchINFO = input.nextLine();
 
 				if (searchINFO.equals("a")) {
-					System.out.println("編號:  ");
+					System.out.println("編號(輸入查詢編號): ");
 					input = new Scanner(System.in);
 					String NoName = input.nextLine();
 					// 尚未解決Exception in thread "main" java.util.NoSuchElementException: no line found問題
-//					System.out.println(story);
+//					尚未解決print 出來結果
 					ArrayList<Book> resultList = findBooksByNoName(NoName);
-					System.out.println(
-							"-------------------------------------------------查詢結果------------------------------------------------------");
 					if (!resultList.isEmpty()) {
 						printBookList(resultList);
 					}
 				} else if (searchINFO.equals("b")) {
-					System.out.println("中文書名: ");
-
+					System.out.println("中文書名 (輸入查詢中文書名): ");
+					input = new Scanner(System.in);
+					String NoName = input.nextLine();
+					ArrayList<Book> resultList = findBooksByNoName(NoName);
 				} else if (searchINFO.equals("c")) {
-					System.out.println("中文書名: ");
+					System.out.println("英文書名 (輸入查詢英文書名): ");
+					input = new Scanner(System.in);
+					String NoName = input.nextLine();
+					ArrayList<Book> resultList = findBooksByNoName(NoName);
 				} else if (searchINFO.equals("d")) {
-					System.out.println("中文書名: ");
+					System.out.println("ISBN (輸入查詢ISBN): ");
+					input = new Scanner(System.in);
+					String NoName = input.nextLine();
+					ArrayList<Book> resultList = findBooksByNoName(NoName);
 				} else {
 					System.out.println("輸入錯誤，請重新輸入。");
+					input = new Scanner(System.in);
+					String NoName = input.nextLine();
+					ArrayList<Book> resultList = findBooksByNoName(NoName);
 				}
 				/******************************************
 				 *** 借閱
@@ -88,14 +96,15 @@ public class SystemLibrary {
 			}
 			input.close();
 		}
-	}
+	}//systemlib
 
 	// 查詢
 	private ArrayList<Book> findBooksByNoName(String bookNameANo) {
 		ArrayList<Book> resultNumber = new ArrayList<Book>();
 		for (Book b : BookList) {
-			if (((String) b.numberB).startsWith(bookNameANo) || ((String) b.chineseB).startsWith(bookNameANo)
-					|| ((String) b.engB).startsWith(bookNameANo)) {
+			if (((String) b.numberB).startsWith(bookNameANo) || 
+					((String) b.chineseB).startsWith(bookNameANo) ||
+					((String) b.engB).startsWith(bookNameANo)) {
 				resultNumber.add(b);
 			}
 		}
@@ -155,8 +164,8 @@ public class SystemLibrary {
 
 	// 捐書(新增)
 	private void addBook(String... bookInfo) {
-		Book book = new Book();
-//        Book book = new Book(bookInfo[0], bookInfo[1], bookInfo[2], Double.parseDouble(bookInfo[3]), Integer.parseInt(bookInfo[4]));
+//		Book book = new Book();
+        Book book = new Book(bookInfo[0], bookInfo[1], bookInfo[2], Double.parseDouble(bookInfo[3]), Integer.parseInt(bookInfo[4]));
 		boolean flag = false;
 		for (Book b : BookList) {
 			if (b.chineseB.equals(book.chineseB) && ((String) b.engB).equalsIgnoreCase(book.engB)) {
